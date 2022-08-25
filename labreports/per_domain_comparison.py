@@ -8,7 +8,7 @@ from downward.reports import PlanningReport
 
 
 class PerDomainComparison(PlanningReport):
-    def __init__(self, sstddev=None, sort=False, **kwargs):
+    def __init__(self, *, sstddev=None, sort=True, **kwargs):
         """
         If given, *stddev* must be a dictionary mapping from algorithm
         names to standard deviation values.

@@ -15,7 +15,7 @@ class PerTaskComparison(PlanningReport):
     We highlight the maximum of the entries (r, c) and (c, r) in bold.
 
     """
-    def __init__(self, sort=True, **kwargs):
+    def __init__(self, *, sort=True, **kwargs):
         """
         If *sort* is True, sort algorithms from "weakest" to
         "strongest". The "strength" of an algorithm A is the number of
