@@ -1,4 +1,9 @@
+from collections import defaultdict
+
 from downward.reports import PlanningReport
+
+from lab.reports import Table
+
 
 class OneVsOthersPerDomainComparison(PlanningReport):
     def __init__(self, algorithm, **kwargs):
@@ -9,7 +14,7 @@ class OneVsOthersPerDomainComparison(PlanningReport):
         domain_and_algorithm_to_coverage = defaultdict(int)
         for (domain, problem), runs in self.problem_runs.items():
             for run in runs:
-                domain_and_algorithm_to_coverage[(run["domain"], get_algorithm(run))] += run["coverage"]
+                domain_and_algorithm_to_coverage[(run["domain"], run["algorithm"])] += run["coverage"]
 
         domain_groups = sorted(set([group for group, algo in domain_and_algorithm_to_coverage.keys()]))
 
