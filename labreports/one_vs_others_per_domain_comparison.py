@@ -17,6 +17,7 @@ class OneVsOthersPerDomainComparison(PlanningReport):
                 domain_and_algorithm_to_coverage[(run["domain"], run["algorithm"])] += run["coverage"]
 
         domain_groups = sorted(set([group for group, algo in domain_and_algorithm_to_coverage.keys()]))
+        print("Domains:", len(domain_groups))
 
         summary_table = Table("Summary")
         summary_table.set_column_order(self.algorithms)
