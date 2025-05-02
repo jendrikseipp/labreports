@@ -1,19 +1,19 @@
-from collections import defaultdict
-
 from downward.reports import PlanningReport
 
 class CactusPlot(PlanningReport):
     """Example plotting coverage over time:
 
-        CactusPlot(attributes=["coverage", "planner_time"])
+        CactusPlot(attributes=["coverage", "planner_time"], max_time=1800)
 
     """
-    def __init__(self, attributes=None, **kwargs):
+    def __init__(self, max_time=1800, **kwargs):
+        super().__init__(**kwargs)
+        self.max_time = max_time
+
         try:
-            self.cumulative_attribute, self.time_attribute = attributes
+            self.cumulative_attribute, self.time_attribute = self.attributes
         except ValueError:
             raise ValueError("CactusPlot needs exactly two attributes.") from None
-        super().__init__(attributes=attributes, **kwargs)
 
     def write(self):
         for algo in self.algorithms:
@@ -42,9 +42,9 @@ class CactusPlot(PlanningReport):
             if x != 0:
                 coords.insert(0, (x, 0))
 
-            # Repeat last cumulative value at 1800s.
+            # Repeat last cumulative value at the time limit.
             cumulative_value = len(runtimes)
-            coord = (1800, cumulative_value)
+            coord = (self.max_time, cumulative_value)
             if coords[-1] != coord:
                 coords.append(coord)
 
