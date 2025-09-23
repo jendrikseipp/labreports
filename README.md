@@ -5,8 +5,7 @@ A collection of report classes for the [Downward Lab](https://lab.readthedocs.io
 ## Installation
 
 ```console
-    git clone https://github.com/jendrikseipp/labreports.git
-    pip install --editable labreports/
+    uv pip install "git+https://github.com/jendrikseipp/labreports"
 ```
 
 ## Usage
